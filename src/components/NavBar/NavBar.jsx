@@ -1,12 +1,17 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './NavBar.module.css';
 
 function NavBar({onSearch}) {
   return (
     <div className={styles.navBar}>
-        <h4 className={styles.pageTitle}>Rick and morty app</h4>
-        <SearchBar onSearch={onSearch}/>
+      <div className='linkContainer'>
+        <NavLink to={'/'}>Rick and Mory app</NavLink>
+        <NavLink to={'about'}>About</NavLink>
+        <NavLink to={'contact'}>Contact</NavLink>
+      </div> 
+      <SearchBar onSearch={onSearch}/>
     </div>
   )
 }

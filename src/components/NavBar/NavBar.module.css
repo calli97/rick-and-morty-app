@@ -17,3 +17,7 @@
 .pageTitle{
     padding: 10px;
 }
+.linkContainer{
+    display: flex;
+    flex-direction: row;
+}

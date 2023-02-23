@@ -34,9 +34,7 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	animation-name: ingresoDeCarta;
-	animation-duration: 3s;
-	animation-iteration-count: 1;
+	visibility:visible;
 }
 
 @keyframes ingresoDeCarta {
@@ -80,7 +78,8 @@
 	-webkit-text-stroke: 1px rgba(0,0,0,0.5);
 	animation-name: rezise;
 	animation-iteration-count: infinite;
-	animation-duration: 4s;
+	animation-duration: 2s;
+	animation-timing-function:ease-in-out ;
   }
 
   @keyframes rezise {
@@ -99,3 +98,32 @@
 	z-index: 48;
   }
   
+.linkButton{
+	position: relative;
+	top: 0;
+	left: 0;
+}
+.linkImage{
+	position: absolute;
+	width: 40px;
+	height:40px;
+	top: 0;
+	left: 0;
+	z-index: 5;
+	animation-name: rotate;
+	animation-iteration-count: infinite;
+	animation-duration: 3s;
+	animation-timing-function:linear;
+}
+.linkText{
+	position: relative;
+	z-index: 10;
+}
+
+@keyframes rotate {
+	from{transform: rotate(0deg);}
+	/* 25%{transform: rotate(90deg) scale(1.25,1.25);} */
+	50%{transform: rotate(180deg) scale(1.5,1.5);}
+	/* 75%{transform: rotate(270deg) scale(1.25,1.25);} */
+	to{transform: rotate(360deg) scale(1.0,1.0);}
+}
