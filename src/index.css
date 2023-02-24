@@ -10,6 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 0px;
+  height: 100vh;
 }
 
 code {
@@ -22,3 +23,7 @@ code {
   src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/3089507/get-schwifty.woff') format('woff');
 }
 
+
+#root{
+  height: 100%;
+}

@@ -3,6 +3,7 @@ import styles from './Card.module.css'
 import {useTransition,animated} from 'react-spring'
 import { Link } from 'react-router-dom'
 import portalImage from '../../images/portal.png';
+import spaceShipImage from '../../images/spaceShip.png'
 
 
 export default function Card(props) {
@@ -35,7 +36,6 @@ export default function Card(props) {
             <animated.div style={style} className='item'>
                <div  className={styles.cardStyle} >
                   <div className={styles.imageContainer}>
-                     <button className={styles.deleteButton} onClick={deleteCharacter}>X</button>
                      <img  src={image} alt={name} className={styles.characterImage}/>
                      <div className={styles.title}>{name}</div>
                      <div className={`${styles.title} ${styles.middle}`}>{name}</div>
@@ -43,10 +43,22 @@ export default function Card(props) {
                   </div> 
                   <h6>{species}</h6>
                   <h6>{gender}</h6>
-                  <div className={styles.linkButton}>
-                     <img src={portalImage} className={styles.linkImage}/>
-                     <Link to={`detail/${id}`} className={styles.linkText}>More ...</Link>
+                  <div className={styles.buttonsContainer}>
+                     <div className={styles.linkButton}>
+                        <img src={portalImage} className={styles.linkImage} alt='portalImage' onClick={deleteCharacter}/>
+                        <p className={styles.linkText}>Delete</p>
+                     </div>
+                     <div className={`${styles.shipButton}`}>
+                        <Link to={`detail/${id}`}>
+                           <figure className={styles.shipContainer}>
+                              <img src={spaceShipImage} className={styles.shipImage}  alt='Borrar'/>
+                              <p className={styles.shipText}>More...</p>
+                           </figure>
+                        </Link>
+                     </div>
+                     {/* <button className={styles.deleteButton} onClick={deleteCharacter}>X</button> */}
                   </div>
+                  
                   
                </div>
             </animated.div>):''
