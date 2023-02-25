@@ -2,7 +2,7 @@ import { useEffect ,useState} from 'react'
 import styles from './Card.module.css'
 import {useTransition,animated} from 'react-spring'
 import { Link } from 'react-router-dom'
-import portalImage from '../../images/portal.png';
+import portalImage from '../../images/portalGIFLoop.gif';
 import spaceShipImage from '../../images/spaceShip.png'
 
 
@@ -44,9 +44,11 @@ export default function Card(props) {
                   <h6>{species}</h6>
                   <h6>{gender}</h6>
                   <div className={styles.buttonsContainer}>
-                     <div className={styles.linkButton}>
-                        <img src={portalImage} className={styles.linkImage} alt='portalImage' onClick={deleteCharacter}/>
-                        <p className={styles.linkText}>Delete</p>
+                     <div className={styles.portalButton}>
+                        <figure className={styles.portalContainer} onClick={deleteCharacter}>
+                           <img src={portalImage} className={styles.portalImage} alt='portalImage' />
+                           <p className={styles.portalText}>X</p>
+                        </figure>
                      </div>
                      <div className={`${styles.shipButton}`}>
                         <Link to={`detail/${id}`}>
@@ -56,7 +58,6 @@ export default function Card(props) {
                            </figure>
                         </Link>
                      </div>
-                     {/* <button className={styles.deleteButton} onClick={deleteCharacter}>X</button> */}
                   </div>
                   
                   
