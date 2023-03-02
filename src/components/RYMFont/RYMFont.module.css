@@ -1,0 +1,37 @@
+.container{
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+.title {
+	position: absolute;
+	bottom: -30px;
+	width: 100%;
+	text-align: center;
+	font-family: 'Get Schwifty';
+	font-size: 1.6em;
+	color: #08BAE3;
+	z-index: 50;
+	-webkit-text-stroke: 1px rgba(0,0,0,0.5);
+	animation-name: rezise;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	animation-timing-function:ease-in-out ;
+  }
+
+  @keyframes rezise {
+	from{scale: 1.0;}
+	50%{scale: 0.8;}
+	to{scale: 1.0;}
+  }
+  
+  .title.middle {
+	-webkit-text-stroke: 0.1em #FFF765;
+	z-index: 49;
+  }
+  
+  .title.bottom {
+	-webkit-text-stroke: 0.4em black;
+	z-index: 48;
+  }

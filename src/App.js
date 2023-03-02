@@ -9,6 +9,7 @@ import spaceVideo from './videos/spaceVideo.mp4'
 import NavBar from './components/NavBar/NavBar';
 import { useEffect, useState } from 'react';
 import SingIn from './pages/SignIn/SingIn';
+import Favorites from './pages/Favorites/Favorites';
 
 function App () {
   const [characters, setCharacters] = useState([])
@@ -57,6 +58,7 @@ function App () {
         <Route path='/home' element={<Home characters={characters} charactersSetter={setCharacters}/>}></Route>
         <Route path='/about' element={<About/>}></Route>
         <Route path='/detail/:characterId' element={<Detail></Detail>}></Route>
+        <Route path='/favorites' element={<Favorites/>}></Route>
         <Route path='/' element={<SingIn userVerification={logIn}/>}></Route>
         <Route path='*' element={<Error404/>}></Route>
       </Routes>  

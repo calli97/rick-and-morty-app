@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import RYMFont from '../../components/RYMFont/RYMFont';
 import styles from "./Detail.module.css";
 
 function Detail() {
@@ -17,7 +18,12 @@ function Detail() {
   return (
     <div className={styles.page}>
       <div className={styles.container}>
-        <h2>{data.name}</h2>
+        <div className={styles.dataContainer}>
+          <RYMFont text={data.name}></RYMFont>
+        </div>
+        <div className={styles.imageContainer}>
+          <img src={data.image} alt="Character" srcset=""  className={styles.characterImage} />
+        </div>
       </div>
     </div>
   )
