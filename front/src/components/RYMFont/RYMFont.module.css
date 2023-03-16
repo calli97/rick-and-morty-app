@@ -2,11 +2,11 @@
     position: relative;
     top: 0px;
     left: 0px;
+	height: 3em;
 }
 
 .title {
 	position: absolute;
-	bottom: -30px;
 	width: 100%;
 	text-align: center;
 	font-family: 'Get Schwifty';
@@ -27,11 +27,14 @@
   }
   
   .title.middle {
+	position: absolute;
+	
 	-webkit-text-stroke: 0.1em #FFF765;
 	z-index: 49;
   }
   
   .title.bottom {
+	position: absolute;
 	-webkit-text-stroke: 0.4em black;
 	z-index: 48;
   }
