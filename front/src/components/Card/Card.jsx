@@ -6,28 +6,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import favoriteImage from '../../images/checkHeart.png'
 import notFavoriteImage from '../../images/uncheckHeart.png'
 import { useEffect, useState } from 'react';
-import { deleteCharacter } from '../../redux/actions';
+import { deleteCharacter,deleteFavorite,addFavorite } from '../../redux/actions';
 
 
 function Card(props) {
-   const {id,name,image,species,gender}=props
-   const favorites=useSelector(state=>state.myFavorites)
+   const {id,name,image,species,gender,favorite}=props
    const dispatch=useDispatch()
-   const [fav, setFav] = useState(false)
-   useEffect(() => {
-     const character=favorites.find(el=>el.id===id)
-     if(character===undefined){
-      setFav(false)
-     }else{
-      setFav(true)
-     }
-   }, [])
    
    
    const handleDeleteClick=(e)=>{
       dispatch(deleteCharacter(id))
-      console.log('hola')
-      //props.setter(characters.filter(element=>element.id!==id))
+   }
+   const handleFavClick=(e)=>{
+      if(favorite===true){
+         dispatch(deleteFavorite(id))
+      }else if(favorite===false){
+         dispatch(addFavorite(id))
+      }
    }
 
    return (
@@ -36,8 +31,11 @@ function Card(props) {
             <img src={portalImage} alt="Entry portal"  className={styles.entryPortalImage} id='portalImage'/>
          </div>
          <div  className={styles.cardStyle}>
-            {/* <input type='checkbox' onChange={favoriteHandler} checked={favorite}></input> */}
             <div className={styles.imageContainer}>
+               <img src={favorite?favoriteImage:notFavoriteImage} 
+                  alt='favorite' 
+                  className={`${styles.favHeart}`}
+                  onClick={handleFavClick}/>
                <img  src={image} alt={name} className={styles.characterImage}/>
                <div className={styles.title}>{name}</div>
                <div className={`${styles.title} ${styles.middle}`}>{name}</div>

@@ -22,7 +22,7 @@ const reducer=(state = initialState, { type, payload })=>{
         case DELETE_CHARACTER:
             return {
                 ...state,
-                myCharacters:payload.data,
+                myCharacters:payload.charData,
                 myFavorites:payload.favData
             }
         case GET_FAVORITES:
@@ -33,12 +33,14 @@ const reducer=(state = initialState, { type, payload })=>{
         case ADD_FAVORITE:
             return { 
                 ...state, 
-                myFavorites:payload
-            } 
+                myFavorites:payload.favData,
+                myCharacters:payload.charData
+            }
         case DELETE_FAVORITE:
             return{
                 ...state,
-                myFavorites:payload
+                myFavorites:payload.favData,
+                myCharacters:payload.charData
             }
         default:
             return state

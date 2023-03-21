@@ -16,6 +16,7 @@ export default function Cards() {
             gender={el.gender} 
             image={el.image}
             key={`${el.id}-${el.name}-card-key`}
+            favorite={el.favorite}
             ></Card>
          )
       })}

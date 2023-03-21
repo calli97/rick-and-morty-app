@@ -23,12 +23,19 @@ export const addFavorite=(characterId)=>{
     return async function (dispatch) {
         const response=await fetch('http://localhost:3001/favorites',{
             method:'POST',
-            body:JSON.stringify(characterId)
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({ id: characterId })
         })
-        const data=await response.json()
+        const favData=await response.json()
+        const charResponse=await fetch('http://localhost:3001/characters',{
+            method:'GET'
+        })
+        const charData=await charResponse.json()
          dispatch({
             type:ADD_FAVORITE,
-            payload:data
+            payload:{favData,charData}
         })
     }
 }
@@ -37,13 +44,15 @@ export const addFavorite=(characterId)=>{
 
 export const deleteFavorite=(characterId)=>{
     return async function (dispatch) {
-        const response=await fetch(`http://localhost:3001/favorites/${characterId}`,{
+        const favResponse=await fetch(`http://localhost:3001/favorites/${characterId}`,{
             method:'DELETE'
         })
-        const data=await response.json()
+        const favData=await favResponse.json()
+        const charResponse=await fetch('http://localhost:3001/characters/')
+        const charData=await charResponse.json()
          dispatch({
             type:DELETE_FAVORITE,
-            payload:data
+            payload:{charData,favData}
         })
     }
 }
@@ -77,20 +86,23 @@ export const getCharacter=()=>{
         })
     }
 }
+
 export const deleteCharacter=(characterId)=>{
     return async function (dispatch) {
-        const response=await fetch(`http://localhost:3001/characters/${characterId}`,{
+        const charResponse=await fetch(`http://localhost:3001/characters/${characterId}`,{
             method:'DELETE'
         })
-        const data=await response.json()
+        const charData=await charResponse.json()
         //If you delete a character you also deleted from the favorites list
-        const favResponse=await fetch(`http://localhost:3001/favorites/${characterId}`,{
-            method:'DELETE'
+        const favResponse=await fetch(`http://localhost:3001/favorites`,{
+            method:'GET'
         })
         const favData=await favResponse.json()
+        console.log('favData:',favData)
+        console.log('charData: ',charData)
          dispatch({
             type:DELETE_CHARACTER,
-            payload:{data,favData}
+            payload:{charData,favData}
         })
     }
 }
