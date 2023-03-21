@@ -1,24 +1,98 @@
-const ADD_FAVORITE='ADD_FAVORITE'
-const DELETE_FAVORITE='DELETE_FAVORITE'
+export const ADD_FAVORITE='ADD_FAVORITE'
+export const DELETE_FAVORITE='DELETE_FAVORITE'
+export const GET_FAVORITES='GET_FAVORITES'
+export const ADD_CHARACTER='ADD_CHARACTER'
+export const GET_CHARACTER='GET_CHARACTER'
+export const DELETE_CHARACTER='DELETE_CHARACTER'
 
 //Actions
-const addFavorite=(character)=>{
-    return{
-        type:ADD_FAVORITE,
-        payload:character
+export const getFavorites=()=>{
+    return async function (dispatch) {
+        const response=await fetch('http://localhost:3001/favorite',{
+            method:'GET'
+        })
+        const data=await response.json()
+         dispatch({
+            type:GET_FAVORITES,
+            payload:data
+        })
     }
 }
 
-const deleteFavorite=(character)=>{
-    return{
-        type:DELETE_FAVORITE,
-        payload:character
+export const addFavorite=(characterId)=>{
+    return async function (dispatch) {
+        const response=await fetch('http://localhost:3001/favorites',{
+            method:'POST',
+            body:JSON.stringify(characterId)
+        })
+        const data=await response.json()
+         dispatch({
+            type:ADD_FAVORITE,
+            payload:data
+        })
     }
 }
 
-module.exports={
-    ADD_FAVORITE,
-    DELETE_FAVORITE,
-    deleteFavorite,
-    addFavorite
+
+
+export const deleteFavorite=(characterId)=>{
+    return async function (dispatch) {
+        const response=await fetch(`http://localhost:3001/favorites/${characterId}`,{
+            method:'DELETE'
+        })
+        const data=await response.json()
+         dispatch({
+            type:DELETE_FAVORITE,
+            payload:data
+        })
+    }
 }
+
+export function addCharacter(characterId){
+    return async function(dispatch) {
+        const response=await fetch('http://localhost:3001/characters',{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({ id: characterId })
+        })
+        const data=await response.json()
+        dispatch ({
+            type:ADD_CHARACTER,
+            payload:data
+        })
+    }
+}
+
+export const getCharacter=()=>{
+    return async function (dispatch) {
+        const response=await fetch('http://localhost:3001/characters',{
+            method:'GET'
+        })
+        const data= await response.json()
+         dispatch({
+            type:GET_CHARACTER,
+            payload:data
+        })
+    }
+}
+export const deleteCharacter=(characterId)=>{
+    return async function (dispatch) {
+        const response=await fetch(`http://localhost:3001/character/${characterId}`,{
+            method:'DELETE'
+        })
+        const data=await response.json()
+        //If you delete a character you also deleted from the favorites list
+        const favResponse=await fetch(`http://localhost:3001/favorites/${characterId}`,{
+            method:'DELETE'
+        })
+        const favData=await favResponse.json()
+         dispatch({
+            type:DELETE_CHARACTER,
+            payload:{data,favData}
+        })
+    }
+}
+
+

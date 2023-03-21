@@ -1,16 +1,19 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {addCharacter} from '../../redux/actions'
 
-export default function SearchBar({onSearch}) {
+export default function SearchBar() {
    let [value, setValue] = useState('')
-   const addRandom=()=>{
-      onSearch(Math.floor(Math.random() * 826))
+   const dispatch=useDispatch()
+   const handleClick=(id)=>{
+      dispatch(addCharacter(id))
       setValue('')
    }
    return (
       <div>
          <input type='search' onChange={(e)=>{setValue(e.target.value)}} value={value}/>
-         <button onClick={()=>{onSearch(Number(value));setValue('')}}>Agregar</button>
-         <button onClick={addRandom}>Add Random</button>
+         <button onClick={()=>{handleClick(Number(value))}}>Agregar</button>
+         <button onClick={()=>{handleClick((Math.floor(Math.random() * 826)))}}>Add Random</button>
       </div>
    );
 }

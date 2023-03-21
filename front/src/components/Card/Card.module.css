@@ -16,6 +16,12 @@
 	to{transform: scale(1,1);opacity: 0;}
 }
 
+.favHeart{
+	position: absolute;
+	top:0px;
+	right: 0px;
+	width: 60px;
+}
 
 .cardStyle{
 	background-color: #3a3f35;

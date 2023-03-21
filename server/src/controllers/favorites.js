@@ -1,6 +1,6 @@
 const favoriteController={}
 
-let favorites=[]
+let {favorites,characters}=require('../utils/data')
 
 favoriteController.get=async(req,res,next)=>{
     try {
@@ -12,20 +12,31 @@ favoriteController.get=async(req,res,next)=>{
 
 favoriteController.post=async(req,res,next)=>{
     const {id}=req.body
+    
     try {
-        const response=await fetch(`https://rickandmortyapi.com/api/character/${id}`)
-        const data=await response.json()
-        favorites.push(data)
+        const item=characters.find(el=>el.id===parseInt(id))
+        if(item===undefined){
+            throw new Error('The character must be added first to be included in favorites')
+        }
+        favorites.push(item)
         res.json(favorites) 
     } catch (error) {
-        res.status(500).json({error:'error'})
+        res.status(500).json({error:error.message})
     }
 }
 
 favoriteController.delete=async(req,res,next)=>{
-    const {id}=req.body
-    favorites=favorites.filter(fav=>fav.id!==paserInt(id))
-    res.json(favorites)
+    const id=req.params.characterid
+    try {
+        if(favorites.find(el=>el.id===parseInt(id))===undefined){
+            throw new Error('Character not added to Favorites')
+        }
+        favorites=favorites.filter(fav=>fav.id!==parseInt(id))
+        res.json(favorites) 
+    } catch (error) {
+        res.status(500).json({error:error.message})
+    }
+    
 }
 
 module.exports=favoriteController

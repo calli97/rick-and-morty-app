@@ -2,35 +2,29 @@ import styles from './Card.module.css'
 import { Link } from 'react-router-dom'
 import portalImage from '../../images/portalGIFLoop.gif';
 import spaceShipImage from '../../images/spaceShip.png'
-import { useEffect,useState } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import { addFavorite, deleteFavorite } from '../../redux/actions';
+import { useSelector } from 'react-redux';
+import favoriteImage from '../../images/checkHeart.png'
+import notFavoriteImage from '../../images/uncheckHeart.png'
+import { useEffect, useState } from 'react';
 
 
 function Card(props) {
-   const {characters,id,name,image,species,gender}=props
+   const {id,name,image,species,gender}=props
    const favorites=useSelector(state=>state.myFavorites)
-   const dispatch=useDispatch()
-   const [favorite,setFavorite]=useState(!!favorites.find((character)=>{
-      return character.id===id
-   }))   
-   const favoriteHandler=(e)=>{
-      setFavorite(e.target.checked)
-   }
+   const [fav, setFav] = useState(false)
    useEffect(() => {
-     if(favorite){
-      dispatch(addFavorite({
-         id,name,image,species,gender
-      }))
+     const character=favorites.find(el=>el.id===id)
+     if(character===undefined){
+      setFav(false)
      }else{
-      dispatch(deleteFavorite(id))
+      setFav(true)
      }
-   }, [favorite])
+   }, [])
    
 
    const deleteCharacter=(e)=>{
-      dispatch(deleteFavorite(id))
-      props.setter(characters.filter(element=>element.id!==id))
+      // dispatch(deleteFavorite(id))
+      //props.setter(characters.filter(element=>element.id!==id))
    }
 
    return (
@@ -39,7 +33,7 @@ function Card(props) {
             <img src={portalImage} alt="Entry portal"  className={styles.entryPortalImage} id='portalImage'/>
          </div>
          <div  className={styles.cardStyle}>
-            <input type='checkbox' onChange={favoriteHandler} checked={favorite}></input>
+            {/* <input type='checkbox' onChange={favoriteHandler} checked={favorite}></input> */}
             <div className={styles.imageContainer}>
                <img  src={image} alt={name} className={styles.characterImage}/>
                <div className={styles.title}>{name}</div>
@@ -61,7 +55,7 @@ function Card(props) {
                         <img src={spaceShipImage} className={styles.shipImage}  alt='Borrar'/>
                         <p className={styles.shipText}>More...</p>
                      </figure>
-                  </Link>
+                  </Link> 
                </div>
             </div>
          </div>

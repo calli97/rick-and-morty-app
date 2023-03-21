@@ -7,6 +7,6 @@ router.get('/',favoriteController.get)
 
 router.post('/',favoriteController.post)
 
-router.delete('/',favoriteController.delete)
+router.delete('/:characterid',favoriteController.delete)
 
 module.exports=router

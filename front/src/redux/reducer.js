@@ -1,31 +1,47 @@
-import { ADD_FAVORITE,DELETE_FAVORITE } from "./actions";
+import { ADD_FAVORITE,DELETE_FAVORITE,GET_FAVORITES,GET_CHARACTER,ADD_CHARACTER,DELETE_CHARACTER} from "./actions";
 
 const initialState={
-    myFavorites:[]
+    myFavorites:[],
+    myCharacters:[]
 }
 
 
 const reducer=(state = initialState, { type, payload })=>{
     switch (type) {
-
-    case ADD_FAVORITE:
-        if(state.myFavorites.find((character)=>{
-            return character.id===payload.id;
-        })){
-            return state
-        }else{
+        case GET_CHARACTER:
+            console.log('somos')
+            return {
+                ...state,
+                myCharacters:payload
+            }
+        case ADD_CHARACTER:
+            return {
+                ...state,
+                myCharacters:payload
+            }
+        case DELETE_CHARACTER:
+            return {
+                ...state,
+                myCharacters:payload.data,
+                myFavorites:payload.favData
+            }
+        case GET_FAVORITES:
+            return{
+                ...state,
+                myFavorites:payload
+            }
+        case ADD_FAVORITE:
             return { 
                 ...state, 
-                myFavorites:[...state.myFavorites,payload] 
+                myFavorites:payload
+            } 
+        case DELETE_FAVORITE:
+            return{
+                ...state,
+                myFavorites:payload
             }
-        }  
-    case DELETE_FAVORITE:
-        return{
-            ...state,
-            myFavorites:state.myFavorites.filter(el=>el.id!==payload)
-        }
-    default:
-        return state
+        default:
+            return state
   }
 }
 

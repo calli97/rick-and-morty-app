@@ -12,7 +12,6 @@ import SingIn from './pages/SignIn/SingIn';
 import Favorites from './pages/Favorites/Favorites';
 
 function App () {
-  const [characters, setCharacters] = useState([])
   const [access, setAccess] = useState(false)
   const navigate=useNavigate()
   const username='hola@gmail.com'
@@ -33,29 +32,15 @@ function App () {
     if(access===false){
       navigate('/')
     }
-  }, [access])
+  }, [access,navigate])
   
 
-  const addCharacter=async(id)=>{
-    if(characters.find((el)=>el.id===id)){
-      alert('Personaje ya agregado')
-    }else{
-      const data=await fetch(`https://rickandmortyapi.com/api/character/${id}`)
-      const json=await data.json()
-      if(json.error){
-        alert('Ingrese un id Valido')
-      }else{
-        setCharacters([...characters,json])
-      }
-    }
-  }
-  
   return (
     <>
     <VideoBackground video={spaceVideo}></VideoBackground>
-    {location.pathname==='/'?'':<NavBar onSearch={addCharacter} logOut={logOut}></NavBar>}
+    {location.pathname==='/'?'':<NavBar logOut={logOut}></NavBar>}
       <Routes>
-        <Route path='/home' element={<Home characters={characters} charactersSetter={setCharacters}/>}></Route>
+        <Route path='/home' element={<Home/>}></Route>
         <Route path='/about' element={<About/>}></Route>
         <Route path='/detail/:characterId' element={<Detail></Detail>}></Route>
         <Route path='/favorites' element={<Favorites/>}></Route>
