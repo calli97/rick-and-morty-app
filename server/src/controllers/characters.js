@@ -1,5 +1,5 @@
 const charactersController={}
-let {characters,favorites}=require('../utils/data')
+let {characters}=require('../utils/data')
 
 charactersController.get=async(req,res,next)=>{
     try {
@@ -18,6 +18,7 @@ charactersController.post=async(req,res,next)=>{
         }
         const response=await fetch(`https://rickandmortyapi.com/api/character/${id}`)
         const data=await response.json()
+        data.favorite=false
         characters.push(data)
         res.json(characters) 
     } catch (error) {
@@ -34,8 +35,7 @@ charactersController.delete=async(req,res,next)=>{
         } 
         
         characters=characters.filter(char=>parseInt(char.id)!==parseInt(id))
-        favorites=favorites.filter(char=>parseInt(char.id)!==parseInt(id))
-        res.json(characters)
+        res.status(200).json(characters)
     } catch (error) {
         res.status(500).json({error:error.message})
     }

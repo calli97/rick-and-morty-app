@@ -79,7 +79,7 @@ export const getCharacter=()=>{
 }
 export const deleteCharacter=(characterId)=>{
     return async function (dispatch) {
-        const response=await fetch(`http://localhost:3001/character/${characterId}`,{
+        const response=await fetch(`http://localhost:3001/characters/${characterId}`,{
             method:'DELETE'
         })
         const data=await response.json()

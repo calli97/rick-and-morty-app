@@ -2,15 +2,17 @@ import styles from './Card.module.css'
 import { Link } from 'react-router-dom'
 import portalImage from '../../images/portalGIFLoop.gif';
 import spaceShipImage from '../../images/spaceShip.png'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import favoriteImage from '../../images/checkHeart.png'
 import notFavoriteImage from '../../images/uncheckHeart.png'
 import { useEffect, useState } from 'react';
+import { deleteCharacter } from '../../redux/actions';
 
 
 function Card(props) {
    const {id,name,image,species,gender}=props
    const favorites=useSelector(state=>state.myFavorites)
+   const dispatch=useDispatch()
    const [fav, setFav] = useState(false)
    useEffect(() => {
      const character=favorites.find(el=>el.id===id)
@@ -21,9 +23,10 @@ function Card(props) {
      }
    }, [])
    
-
-   const deleteCharacter=(e)=>{
-      // dispatch(deleteFavorite(id))
+   
+   const handleDeleteClick=(e)=>{
+      dispatch(deleteCharacter(id))
+      console.log('hola')
       //props.setter(characters.filter(element=>element.id!==id))
    }
 
@@ -44,7 +47,7 @@ function Card(props) {
             <h6>{gender}</h6>
             <div className={styles.buttonsContainer}>
                <div className={styles.portalButton}>
-                  <figure className={styles.portalContainer} onClick={deleteCharacter}>
+                  <figure className={styles.portalContainer} onClick={handleDeleteClick}>
                      <img src={portalImage} className={styles.portalImage} alt='portalImage' />
                      <p className={styles.portalText}>X</p>
                   </figure>

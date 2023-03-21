@@ -1,10 +1,11 @@
 const favoriteController={}
 
-let {favorites,characters}=require('../utils/data')
+let {characters}=require('../utils/data')
 
 favoriteController.get=async(req,res,next)=>{
     try {
-        res.json(favorites) 
+        const data=characters.filter(el=>el.favorite===true)
+        res.json(data) 
     } catch (error) {
         res.status(500).json({error:'error'})
     }
@@ -18,8 +19,12 @@ favoriteController.post=async(req,res,next)=>{
         if(item===undefined){
             throw new Error('The character must be added first to be included in favorites')
         }
-        favorites.push(item)
-        res.json(favorites) 
+        if(item.favorite===true){
+            throw new Error('The character is already in favorites')
+        }
+        item.favorite=true
+        const data=characters.filter(el=>el.favorite===true)
+        res.json(data) 
     } catch (error) {
         res.status(500).json({error:error.message})
     }
@@ -28,11 +33,16 @@ favoriteController.post=async(req,res,next)=>{
 favoriteController.delete=async(req,res,next)=>{
     const id=req.params.characterid
     try {
-        if(favorites.find(el=>el.id===parseInt(id))===undefined){
-            throw new Error('Character not added to Favorites')
+        const item=characters.find(el=>el.id===parseInt(id))
+        if(item===undefined){
+            throw new Error('Character not added ')
         }
-        favorites=favorites.filter(fav=>fav.id!==parseInt(id))
-        res.json(favorites) 
+        if(item.favorite===false){
+            throw new Error('The character is not in favorites')
+        }
+        item.favorite=false
+        const data=characters.filter(el=>el.favorite===true)
+        res.json(data) 
     } catch (error) {
         res.status(500).json({error:error.message})
     }
