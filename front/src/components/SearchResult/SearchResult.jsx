@@ -2,10 +2,10 @@ import React from 'react'
 import SearchItem from '../SearchItem/SearchItem';
 import styles from "./SearchResult.module.css";
 
-function SearchResult({results}) {
+function SearchResult({results,pending,clean}) {
   return (
-    <div className={styles.container}>
-        {results.length>0?results.map(el=><SearchItem data={el}/>):'No se encontro'}
+    <div className={styles.container} onClick={clean}>
+        {pending?'...Cargando':(results.length>0?results.map(el=><SearchItem data={el}/>):'No Results')}
     </div>
   )
 }
