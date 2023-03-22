@@ -10,6 +10,8 @@ import NavBar from './components/NavBar/NavBar';
 import { useEffect, useState } from 'react';
 import SingIn from './pages/SignIn/SingIn';
 import Favorites from './pages/Favorites/Favorites';
+import { useDispatch } from 'react-redux';
+import {getCharacter,getFavorites} from './redux/actions'
 
 function App () {
   const [access, setAccess] = useState(false)
@@ -17,6 +19,13 @@ function App () {
   const username='hola@gmail.com'
   const password='a12345'
   const location=useLocation()
+  const dispatch=useDispatch()
+
+  useEffect(() => {
+    dispatch(getCharacter())
+    dispatch(getFavorites())
+  }, [dispatch])
+  
 
   const logOut=()=>{
     setAccess(false)

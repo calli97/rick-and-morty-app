@@ -9,7 +9,6 @@ const initialState={
 const reducer=(state = initialState, { type, payload })=>{
     switch (type) {
         case GET_CHARACTER:
-            console.log('somos')
             return {
                 ...state,
                 myCharacters:payload

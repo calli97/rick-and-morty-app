@@ -8,7 +8,7 @@ export const DELETE_CHARACTER='DELETE_CHARACTER'
 //Actions
 export const getFavorites=()=>{
     return async function (dispatch) {
-        const response=await fetch('http://localhost:3001/favorite',{
+        const response=await fetch('http://localhost:3001/favorites',{
             method:'GET'
         })
         const data=await response.json()
