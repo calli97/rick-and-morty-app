@@ -5,7 +5,6 @@ let {characters}=require('../utils/data')
 favoriteController.get=async(req,res,next)=>{
     try {
         const data=characters.filter(el=>el.favorite===true)
-        console.log(data)
         res.json(data) 
     } catch (error) {
         res.status(500).json({error:'error'})
@@ -26,7 +25,6 @@ favoriteController.post=async(req,res,next)=>{
         const data=characters.filter(el=>el.favorite===true)
         res.json(data) 
     } catch (error) {
-        console.log(error)
         res.status(500).json({error:error.message})
     }
 }

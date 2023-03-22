@@ -3,9 +3,7 @@ let {characters}=require('../utils/data')
 
 charactersController.get=async(req,res,next)=>{
     try {
-        console.log(characters)
-        res.json(characters) 
-        
+        res.json(characters)       
     } catch (error) {
         res.status(500).json({error:'error'})
     }
