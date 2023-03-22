@@ -1,0 +1,52 @@
+.container{
+    height: 60px;
+    width: 220px;
+    color: black;
+    background-color: bisque;
+    border-width: 1px;
+    border-color:#cccccc; 
+    border-style:solid;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.container:hover{
+    background-color: aquamarine;
+}
+
+
+.image{
+    height: 60px;
+}
+
+.data{
+    display: flex;
+    flex-direction: column;
+}
+
+.status{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.statusSignal{
+    margin-right: 5px;
+    height: 14px;
+    width: 14px;
+    margin-top: 2px;
+    margin-left: 5px;
+    border-radius: 7px;
+}
+
+.alive{
+    background-color: green;
+}
+
+.dead{
+    background-color: red;
+}
+
+.unknown{
+    background-color: grey;
+}
