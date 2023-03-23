@@ -49,7 +49,6 @@ function App () {
       navigate('/')
     }
   }, [access,navigate])
-  
 
   return (
     <>
