@@ -14,7 +14,7 @@ function NavBar({onSearch,logOut}) {
         <NavLink to={'favorites'} className={styles.link}>Favorites</NavLink>
       </div> 
       <SearchBar onSearch={onSearch}/>
-      <button onClick={logOut}>Log Out</button>
+      <button onClick={logOut} className={styles.button}>Log Out</button>
     </div>
   )
 }

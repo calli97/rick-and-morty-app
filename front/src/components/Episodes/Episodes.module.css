@@ -1,0 +1,14 @@
+.container{
+    width: 300px;
+    background-color: white;
+    height: 110px;
+    border-style: inset;
+    border-radius: 5px;
+    color: black;
+    overflow: scroll;
+    padding: 10px;
+}
+
+.epi{
+    font-size: 15px;
+}

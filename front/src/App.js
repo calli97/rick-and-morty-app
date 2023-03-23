@@ -12,6 +12,7 @@ import SingIn from './pages/SignIn/SingIn';
 import Favorites from './pages/Favorites/Favorites';
 import { useDispatch } from 'react-redux';
 import {getCharacter,getFavorites} from './redux/actions'
+import LogOutTransition from './components/LogOutTransition/LogOutTransition';
 
 function App () {
   const [access, setAccess] = useState(false)
@@ -20,6 +21,7 @@ function App () {
   const password='a12345'
   const location=useLocation()
   const dispatch=useDispatch()
+  const [logOutTransition, setlogOutTransition] = useState(false)
 
   useEffect(() => {
     dispatch(getCharacter())
@@ -28,7 +30,12 @@ function App () {
   
 
   const logOut=()=>{
-    setAccess(false)
+    setlogOutTransition(true)
+    setTimeout(() => {
+      setlogOutTransition(false)
+      setAccess(false)
+    }, 1200);
+    
   }
   const logIn=(userData)=>{
     if(userData.username===username&&userData.password===password){
@@ -48,6 +55,7 @@ function App () {
     <>
     <VideoBackground video={spaceVideo}></VideoBackground>
     {location.pathname==='/'?'':<NavBar logOut={logOut}></NavBar>}
+    {logOutTransition?<LogOutTransition/>:''}
       <Routes>
         <Route path='/home' element={<Home/>}></Route>
         <Route path='/about' element={<About/>}></Route>
