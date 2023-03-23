@@ -1,11 +1,56 @@
+.item{
+    display: flex;
+    flex-direction: row;
+    border-width: 1px;
+    border-color:#cccccc; 
+    border-style:solid;
+}
+
+.redirect{
+    width: 55px;
+    height: 100%;
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.redirect:hover{
+    background-color: greenyellow;
+}
+
+.shipImage{
+    width: 50px;
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: transform 1s;
+}
+
+.redirect:hover .shipImage{
+    transform: translate(0,-20px);
+}
+
+.details{
+
+    position: absolute;
+    opacity: 0;
+    transition: transform 1s;
+    transition-timing-function: linear;
+}
+
+.redirect:hover .details{
+    opacity: 1;
+}
+
 .container{
     height: 60px;
     width: 220px;
     color: black;
     background-color: bisque;
-    border-width: 1px;
+    /* border-width: 1px;
     border-color:#cccccc; 
-    border-style:solid;
+    border-style:solid; */
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

@@ -2,10 +2,9 @@ import styles from './Card.module.css'
 import { Link } from 'react-router-dom'
 import portalImage from '../../images/portalGIFLoop.gif';
 import spaceShipImage from '../../images/spaceShip.png'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import favoriteImage from '../../images/checkHeart.png'
 import notFavoriteImage from '../../images/uncheckHeart.png'
-import { useEffect, useState } from 'react';
 import { deleteCharacter,deleteFavorite,addFavorite } from '../../redux/actions';
 
 
@@ -24,6 +23,7 @@ function Card(props) {
          dispatch(addFavorite(id))
       }
    }
+   var str = '\uD83D\uDDD1'
 
    return (
       <div className={styles.cardContainer}>
@@ -47,14 +47,14 @@ function Card(props) {
                <div className={styles.portalButton}>
                   <figure className={styles.portalContainer} onClick={handleDeleteClick}>
                      <img src={portalImage} className={styles.portalImage} alt='portalImage' />
-                     <p className={styles.portalText}>X</p>
+                     <p className={styles.portalText}>{str}</p>
                   </figure>
                </div>
                <div className={`${styles.shipButton}`}>
                   <Link to={`/detail/${id}`}>
                      <figure className={styles.shipContainer}>
                         <img src={spaceShipImage} className={styles.shipImage}  alt='Borrar'/>
-                        <p className={styles.shipText}>More...</p>
+                        <p className={styles.shipText}>Details</p>
                      </figure>
                   </Link> 
                </div>

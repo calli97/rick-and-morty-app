@@ -4,8 +4,51 @@ export const GET_FAVORITES='GET_FAVORITES'
 export const ADD_CHARACTER='ADD_CHARACTER'
 export const GET_CHARACTER='GET_CHARACTER'
 export const DELETE_CHARACTER='DELETE_CHARACTER'
+export const ORDER_BY_ID='ORDER_BY_ID'
+export const ORDER_BY_NAME='ORDER_BY_NAME'
+export const ORDER_NONE='ORDER_NONE'
+export const FILTER_NONE='FILTER_NONE'
+export const FILTER_BY_GENDER='FILTER_BY_GENDER'
+export const FILTER_BY_STATUS='FILTER_BY_STATUS'
+
 
 //Actions
+export const orderNone=()=>{
+    return{
+        type:ORDER_NONE
+    }
+}
+export const orderByName=()=>{
+    return{
+        type:ORDER_BY_NAME
+    }
+}
+
+export const orderByID=()=>{
+    return {
+        type:ORDER_BY_ID
+    }
+}
+
+export const filterNone=()=>{
+    return{
+        type:FILTER_NONE
+    }
+}
+export const filterByGender=(gender)=>{
+    return{
+        type:FILTER_BY_GENDER,
+        payload:gender
+    }
+}
+
+export const FilterByStatus=(status)=>{
+    return {
+        type:FILTER_BY_STATUS,
+        payload:status
+    }
+}
+
 export const getFavorites=()=>{
     return async function (dispatch) {
         const response=await fetch('http://localhost:3001/favorites',{
