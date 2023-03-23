@@ -44,6 +44,7 @@ function Detail() {
             <h5 className={styles.gender}>Gender: {data?.gender}</h5>
             <h5>Origin: {data?.origin?.name}</h5>
             <h5>Last known location: {data?.location?.name}</h5>
+            <h4>Episodes: </h4>
             <Episodes episodes={data?.episode}/>
           </div>  
         </div>
